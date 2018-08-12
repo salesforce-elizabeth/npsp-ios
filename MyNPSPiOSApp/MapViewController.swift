@@ -12,6 +12,7 @@ import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    
     var mapView: MKMapView!
     var locationManager = CLLocationManager.init()
     
@@ -23,12 +24,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         view = mapView
         
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("Map view controller loaded its view.")
+        print(loadedJobs.count)
         
         for i in 0..<loadedJobs.count {
             

@@ -39,7 +39,10 @@ class AppDelegate : UIResponder, UIApplicationDelegate
         .postLaunch {  [unowned self] (launchActionList: SFSDKLaunchAction) in
             let launchActionString = SalesforceSDKManager.launchActionsStringRepresentation(launchActionList)
             SalesforceSwiftLogger.log(type(of:self), level:.info, message:"Post-launch: launch actions taken: \(launchActionString)")
+                //COMMENTING OUT TO TEST GETTING RID OF ROOT VIEW CONTROLLER
+                //NOTE: ADDED BACK IN WITH UPDATED FUNCTION
                 self.setupRootViewController()
+            
             
         }.postLogout {  [unowned self] in
             self.handleSdkManagerLogout()
@@ -63,13 +66,13 @@ class AppDelegate : UIResponder, UIApplicationDelegate
         //Mark: Update at 10:20
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        //let initialViewController = storyboard.instantiateViewController(withIdentifier: "VolunteerJobTableViewController")
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "InitialNavigationViewController")
 
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
                 
-        // COMMENTED OUT ON 10:20 update: self.initializeAppViewState();
+        // COMMENTED OUT ON 10:20 update:
+        self.initializeAppViewState();
         
         // If you wish to register for push notifications, uncomment the line below.  Note that,
         // if you want to receive push notifications from Salesforce, you will also need to
@@ -136,6 +139,7 @@ class AppDelegate : UIResponder, UIApplicationDelegate
         self.window!.makeKeyAndVisible()
     }
     
+    /*
     func setupRootViewController()
     {
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -148,6 +152,21 @@ class AppDelegate : UIResponder, UIApplicationDelegate
         let navVC = UINavigationController(rootViewController: rootVC)
         self.window!.rootViewController = navVC
         
+    }
+    */
+    func setupRootViewController()
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "InitialNavigationViewController")
+        
+        self.window?.rootViewController = initialViewController
+        
+        /*
+        let rootVC = RootViewController(nibName: nil, bundle: nil)
+        let navVC = UINavigationController(rootViewController: rootVC)
+        self.window!.rootViewController = navVC
+        */
     }
     
     

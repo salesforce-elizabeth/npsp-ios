@@ -101,7 +101,7 @@ class VolunteerJobDetailViewController: UIViewController, UINavigationController
         
         if let date = dateFormatterGet.date(from: particularShift.startDateTime){
             let weekDay = myCalendar.component(.weekday, from: date)
-            let weekDayString = shortWeekdaySymbols[weekDay]
+            let weekDayString = shortWeekdaySymbols[weekDay-1]
             cell.shiftDateandTimeLabel.text = weekDayString+", "+dft.string(from: date)+"-"+endTimeString
             print(weekDayString+", "+dft.string(from: date))
             print(date.description(with: .current))
