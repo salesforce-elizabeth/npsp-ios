@@ -21,6 +21,7 @@ class ShiftTableViewCell: UITableViewCell {
     var jobId = ""
     var shiftId = ""
     var startDate = ""
+    var hoursWorked = 4
     
     /*
     //MARK: Initialization
@@ -53,7 +54,8 @@ class ShiftTableViewCell: UITableViewCell {
                     "GW_Volunteers__Volunteer_Job__c": jobId,
                     "GW_Volunteers__Volunteer_Shift__c": shiftId,
                     "GW_Volunteers__Status__c":"Confirmed",
-                    "GW_Volunteers__Start_Date__c": "2018-08-20T14:00:00.000+0000"])
+                    "GW_Volunteers__Start_Date__c": "2018-08-20T14:00:00.000+0000",
+                    "GW_Volunteers__Hours_Worked__c": hoursWorked])
                 
                 .then {  request  in
                     shiftCreateRestApi.Promises.send(request: request)
@@ -63,7 +65,6 @@ class ShiftTableViewCell: UITableViewCell {
                 }.catch { error in
                     SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
             }
-            
             
         print("Signed-up 👍")
         signUpButtonOutlet.backgroundColor = UIColor(red:0.67, green:0.71, blue:0.77, alpha:1.0)

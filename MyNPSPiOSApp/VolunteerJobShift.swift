@@ -23,9 +23,10 @@ class VolunteerJobShift {
     var volunteerJobId: String
     var shiftName: String
     var shiftId: String
+    var hoursInShift: Int
 
     //MARK: Initialization
-    init?(startDateTime: String, endDateTime: String, desiredNumberVolunteers: Int, numberVolunteersStillNeeded: Int, volunteerJobId: String, shiftName: String, shiftId: String) {
+    init?(startDateTime: String, endDateTime: String, desiredNumberVolunteers: Int, numberVolunteersStillNeeded: Int, volunteerJobId: String, shiftName: String, shiftId: String, hoursInShift: Int) {
         
         // Initialization should fail if there is no name or # volunteers is negative
         if volunteerJobId.isEmpty || desiredNumberVolunteers < 0 {
@@ -40,6 +41,7 @@ class VolunteerJobShift {
         self.volunteerJobId = volunteerJobId
         self.shiftName = shiftName
         self.shiftId = shiftId
+        self.hoursInShift = hoursInShift
         
     }
     

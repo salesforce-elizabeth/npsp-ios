@@ -44,7 +44,29 @@ class VolunteerJobDetailViewController: UIViewController, UINavigationController
             navigationItem.title = job.name
             detailVolunteerJobLabel.text = job.name
             detailJobImageView.image = job.photo
-            detailVolunteerJobDescriptionLabel.text = job.jobDescription
+            
+            if job.jobDescription.hasPrefix("<p>") {
+                let htmlJobDescription = job.jobDescription
+                //let endIndex = htmlJobDescription.endIndex
+                //let startIndex = 3
+
+                let indexStartOfText = htmlJobDescription.index(htmlJobDescription.startIndex, offsetBy: 3) // 3
+                let indexEndOfText = htmlJobDescription.index(htmlJobDescription.endIndex, offsetBy: -4)    // 8
+                
+                let descriptionSubstring = htmlJobDescription[indexStartOfText..<indexEndOfText]  // "Hello>>>"
+                print(String(descriptionSubstring))
+                detailVolunteerJobDescriptionLabel.text = String(descriptionSubstring)
+
+            } else {
+                detailVolunteerJobDescriptionLabel.text = job.jobDescription
+            }
+            
+            if shifts.count == 0 {
+                availableShiftsHeading.text = "No available shifts"
+                availableShiftsHeading.font = UIFont.italicSystemFont(ofSize: 17.0)
+                
+            }
+            
         }
         
         detailVolunteerJobLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
@@ -118,9 +140,10 @@ class VolunteerJobDetailViewController: UIViewController, UINavigationController
                     cell.signUpButtonOutlet.backgroundColor = UIColor(red:0.67, green:0.71, blue:0.77, alpha:1.0)
                     cell.signUpButtonOutlet.setTitle("Signed Up", for: .normal)
                 } else {
-                    print("Rachel is NOT signed up for this shift!")
+                    print("Rachel is not signed up for this shift!")
                     print(jobHoursSignedUp[i].volunteerShiftId)
                     cell.signUpButtonOutlet.backgroundColor = UIColor(red:1.00, green:0.29, blue:0.35, alpha:1.0)
+                    cell.signUpButtonOutlet.setTitle("Sign Up", for: .normal)
                 }
             }
         } else {
@@ -129,6 +152,7 @@ class VolunteerJobDetailViewController: UIViewController, UINavigationController
         
         cell.shiftId = particularShift.shiftId
         cell.jobId = particularShift.volunteerJobId
+        cell.hoursWorked = particularShift.hoursInShift
                 
         return cell
     }

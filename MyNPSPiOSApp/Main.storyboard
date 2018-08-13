@@ -63,7 +63,7 @@
                             <outlet property="delegate" destination="Uxn-Me-Vlh" id="uRU-kG-ChV"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="MmV-lr-HIp"/>
+                    <tabBarItem key="tabBarItem" title="Volunteer Jobs" image="listImage" id="MmV-lr-HIp"/>
                     <navigationItem key="navigationItem" title="Volunteer Job List" id="wA0-gU-HFM">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="OgT-OT-JJt">
                             <connections>
@@ -76,7 +76,91 @@
             </objects>
             <point key="canvasLocation" x="3722.4000000000001" y="374.66266866566718"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
+        <scene sceneID="q5R-t3-oCX">
+            <objects>
+                <viewController id="5WT-fT-F6f" userLabel="Profile" customClass="ProfileDetailViewController" customModule="MyNPSPiOSApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xli-Sk-e5P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfilePhoto" translatesAutoresizingMaskIntoConstraints="NO" id="1Pg-fo-Qvs">
+                                <rect key="frame" x="67" y="120" width="241" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Pg-fo-Qvs" secondAttribute="height" multiplier="1:1" id="7BU-ih-vmd"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rachel Morris" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRp-1D-U6U">
+                                <rect key="frame" x="67" y="382" width="241" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Volunteering Hours: 6.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqW-P2-iij">
+                                <rect key="frame" x="67" y="411" width="241" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volunteer Level: Ally" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQb-kG-6J2">
+                                <rect key="frame" x="67" y="440" width="241" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volunteer Skills: Fundraising, Event Planning, Cooking, Kitchen Work" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivG-GY-PTK">
+                                <rect key="frame" x="67" y="469" width="241" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volunteer Availability: Weekdays, Weekends; Morning, Afternoon" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9N-GJ-oaa">
+                                <rect key="frame" x="67" y="538" width="241" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQC-tk-Ykv">
+                                <rect key="frame" x="143" y="91" width="92" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tRg-8T-mjV" firstAttribute="trailing" secondItem="fqW-P2-iij" secondAttribute="trailing" constant="67" id="4Xp-qj-5Lc"/>
+                            <constraint firstItem="tRg-8T-mjV" firstAttribute="trailing" secondItem="WQb-kG-6J2" secondAttribute="trailing" constant="67" id="6LM-DC-GCE"/>
+                            <constraint firstItem="tRg-8T-mjV" firstAttribute="trailing" secondItem="oRp-1D-U6U" secondAttribute="trailing" constant="67" id="Gr5-dY-7eM"/>
+                            <constraint firstItem="tRg-8T-mjV" firstAttribute="trailing" secondItem="ivG-GY-PTK" secondAttribute="trailing" constant="67" id="McZ-CQ-4Zc"/>
+                            <constraint firstItem="oRp-1D-U6U" firstAttribute="top" secondItem="1Pg-fo-Qvs" secondAttribute="bottom" constant="21" id="Pjq-CZ-Hz5"/>
+                            <constraint firstItem="tRg-8T-mjV" firstAttribute="trailing" secondItem="M9N-GJ-oaa" secondAttribute="trailing" constant="67" id="S6L-xd-Jah"/>
+                            <constraint firstItem="M9N-GJ-oaa" firstAttribute="top" secondItem="ivG-GY-PTK" secondAttribute="bottom" constant="8" id="SiS-Lc-Pli"/>
+                            <constraint firstItem="ivG-GY-PTK" firstAttribute="top" secondItem="WQb-kG-6J2" secondAttribute="bottom" constant="8" id="XMb-2F-GPP"/>
+                            <constraint firstItem="oRp-1D-U6U" firstAttribute="leading" secondItem="tRg-8T-mjV" secondAttribute="leading" constant="67" id="ZhH-Wu-jL9"/>
+                            <constraint firstItem="M9N-GJ-oaa" firstAttribute="leading" secondItem="tRg-8T-mjV" secondAttribute="leading" constant="67" id="bhQ-j9-QBp"/>
+                            <constraint firstItem="ivG-GY-PTK" firstAttribute="leading" secondItem="tRg-8T-mjV" secondAttribute="leading" constant="67" id="d1c-6F-4Ps"/>
+                            <constraint firstItem="1Pg-fo-Qvs" firstAttribute="leading" secondItem="tRg-8T-mjV" secondAttribute="leading" constant="67" id="gv9-Es-1RI"/>
+                            <constraint firstItem="fqW-P2-iij" firstAttribute="leading" secondItem="tRg-8T-mjV" secondAttribute="leading" constant="67" id="hfA-hf-65t"/>
+                            <constraint firstItem="fqW-P2-iij" firstAttribute="top" secondItem="oRp-1D-U6U" secondAttribute="bottom" constant="8" id="hll-Rx-Stb"/>
+                            <constraint firstItem="1Pg-fo-Qvs" firstAttribute="top" secondItem="tRg-8T-mjV" secondAttribute="top" constant="56" id="ld9-QJ-SeF"/>
+                            <constraint firstItem="WQb-kG-6J2" firstAttribute="leading" secondItem="tRg-8T-mjV" secondAttribute="leading" constant="67" id="ngh-pV-DYu"/>
+                            <constraint firstItem="tRg-8T-mjV" firstAttribute="trailing" secondItem="1Pg-fo-Qvs" secondAttribute="trailing" constant="67" id="ucH-9j-CE8"/>
+                            <constraint firstItem="WQb-kG-6J2" firstAttribute="top" secondItem="fqW-P2-iij" secondAttribute="bottom" constant="8" id="yRp-7H-uh3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tRg-8T-mjV"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My Profile" image="settingsImage" id="hfo-rF-ssg" userLabel="Profile"/>
+                    <connections>
+                        <outlet property="profileImage" destination="1Pg-fo-Qvs" id="8TT-0r-opa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vf1-Gp-cFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2176.8000000000002" y="1164.4677661169417"/>
+        </scene>
+        <!--Map-->
         <scene sceneID="BNu-1C-aqa">
             <objects>
                 <viewController id="im9-M5-e2p" customClass="MapViewController" customModule="MyNPSPiOSApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -97,7 +181,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mDA-2C-zmH"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="sWW-h2-1Kv"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mapImage" id="sWW-h2-1Kv"/>
+                    <connections>
+                        <segue destination="8cm-ys-le3" kind="show" identifier="showDetailFromMap" id="QLM-uy-FJi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kzc-7y-DVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n59-AD-223" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4946" y="961"/>
+            <point key="canvasLocation" x="4297" y="1160"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c4B-Kz-ziA">
@@ -240,12 +327,12 @@
             </objects>
             <point key="canvasLocation" x="1844" y="374.66266866566718"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--STEPS Volunteering-->
         <scene sceneID="Q21-PA-Hh1">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sjx-xy-3Xh" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Obs-co-5Mb"/>
+                    <navigationItem key="navigationItem" title="STEPS Volunteering" id="Obs-co-5Mb"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NGE-be-TeH">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -253,6 +340,7 @@
                     <connections>
                         <segue destination="Uxn-Me-Vlh" kind="relationship" relationship="viewControllers" id="APA-TY-dEp"/>
                         <segue destination="im9-M5-e2p" kind="relationship" relationship="viewControllers" id="2k3-d9-hVl"/>
+                        <segue destination="5WT-fT-F6f" kind="relationship" relationship="viewControllers" id="Lqh-8R-S1d"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNC-9U-uNV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,7 +348,14 @@
             <point key="canvasLocation" x="2783.1999999999998" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultProfilePhoto" width="491" height="491"/>
+        <image name="listImage" width="28" height="21"/>
+        <image name="mapImage" width="48" height="32"/>
+        <image name="settingsImage" width="26" height="26"/>
+    </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="7IJ-cl-fXh"/>
         <segue reference="WCr-oj-oZq"/>
     </inferredMetricsTieBreakers>
 </document>

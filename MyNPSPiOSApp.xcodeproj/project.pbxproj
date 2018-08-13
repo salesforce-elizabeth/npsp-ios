@@ -24,6 +24,7 @@
 		DB7AFE1921017B0500537818 /* VolunteerJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7AFE1821017B0500537818 /* VolunteerJob.swift */; };
 		DBB48F6A2106BB2D003E5423 /* VolunteerJobShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB48F692106BB2D003E5423 /* VolunteerJobShift.swift */; };
 		DBCA2ED42102D7A5000F74F5 /* VolunteerJobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCA2ED22102D7A5000F74F5 /* VolunteerJobDetailViewController.swift */; };
+		DBFA9D472120A8B900E36C41 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA9D462120A8B900E36C41 /* ProfileDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		DB7AFE1821017B0500537818 /* VolunteerJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerJob.swift; sourceTree = "<group>"; };
 		DBB48F692106BB2D003E5423 /* VolunteerJobShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerJobShift.swift; sourceTree = "<group>"; };
 		DBCA2ED22102D7A5000F74F5 /* VolunteerJobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerJobDetailViewController.swift; sourceTree = "<group>"; };
+		DBFA9D462120A8B900E36C41 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,19 +109,20 @@
 			isa = PBXGroup;
 			children = (
 				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
-				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
+				4F393A281C3C8BCD00B3EA13 /* main.swift */,
 				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
+				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
+				DB7AFE1621017A6F00537818 /* VolunteerJobTableViewController.swift */,
+				DB7AFE12210111F800537818 /* JobTableViewCell.swift */,
 				DBCA2ED22102D7A5000F74F5 /* VolunteerJobDetailViewController.swift */,
-				DB2D2D5D2118812E00A1FB76 /* GlobalVariables.swift */,
 				DB6F72C0210A46550098CEB4 /* ShiftTableViewCell.swift */,
-				DB6F72C2210A521D0098CEB4 /* Extensions.swift */,
+				DB796AE2211E36BA00613A06 /* MapViewController.swift */,
+				DBFA9D462120A8B900E36C41 /* ProfileDetailViewController.swift */,
+				DB7AFE1821017B0500537818 /* VolunteerJob.swift */,
 				DBB48F692106BB2D003E5423 /* VolunteerJobShift.swift */,
 				DB2D2D5F21188FF200A1FB76 /* VolunteerJobHours.swift */,
-				4F393A281C3C8BCD00B3EA13 /* main.swift */,
-				DB7AFE12210111F800537818 /* JobTableViewCell.swift */,
-				DB7AFE1621017A6F00537818 /* VolunteerJobTableViewController.swift */,
-				DB796AE2211E36BA00613A06 /* MapViewController.swift */,
-				DB7AFE1821017B0500537818 /* VolunteerJob.swift */,
+				DB6F72C2210A521D0098CEB4 /* Extensions.swift */,
+				DB2D2D5D2118812E00A1FB76 /* GlobalVariables.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				DBCA2ED42102D7A5000F74F5 /* VolunteerJobDetailViewController.swift in Sources */,
 				DB7AFE1721017A6F00537818 /* VolunteerJobTableViewController.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				DBFA9D472120A8B900E36C41 /* ProfileDetailViewController.swift in Sources */,
 				DB2D2D5E2118812E00A1FB76 /* GlobalVariables.swift in Sources */,
 				DBB48F6A2106BB2D003E5423 /* VolunteerJobShift.swift in Sources */,
 				DB2D2D6021188FF200A1FB76 /* VolunteerJobHours.swift in Sources */,
@@ -426,10 +430,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = MyNPSPiOSApp/MyNPSPiOSApp.entitlements;
+				DEVELOPMENT_TEAM = PU7MT37JEM;
 				INFOPLIST_FILE = MyNPSPiOSApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npsp.ios.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.npsp.MyNPSPiOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyNPSPiOSApp/Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -444,10 +449,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = MyNPSPiOSApp/MyNPSPiOSApp.entitlements;
+				DEVELOPMENT_TEAM = PU7MT37JEM;
 				INFOPLIST_FILE = MyNPSPiOSApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.npsp.ios.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.npsp.MyNPSPiOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyNPSPiOSApp/Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

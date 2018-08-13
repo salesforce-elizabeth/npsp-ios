@@ -12,7 +12,6 @@ import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
-    
     var mapView: MKMapView!
     var locationManager = CLLocationManager.init()
     
@@ -29,6 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         print("Map view controller loaded its view.")
+        print("Number of loaded jobs is:")
         print(loadedJobs.count)
         
         for i in 0..<loadedJobs.count {
@@ -44,7 +44,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             annotation.coordinate = location
             annotation.title = loadedJobs[i].name
-            annotation.subtitle = loadedJobs[i].description
+            //annotation.subtitle = loadedJobs[i].description
             self.mapView.addAnnotation(annotation)
             
         }
@@ -86,6 +86,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         mapView.setCenter(userLocation.coordinate, animated: true)
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            print("tapped")
+            performSegue(withIdentifier: "showDetailFromMap", sender: view)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,14 +100,95 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        if (segue.identifier == "showDetailFromMap") {
+            
+            guard let volunteerJobDetailViewController = segue.destination as? VolunteerJobDetailViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedAnnotationTitleforSegue = (sender as! MKPinAnnotationView).annotation!.title! else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            //Pass job
+            let selectedJob = loadedJobs.filter{ $0.name == selectedAnnotationTitleforSegue}.first
+            volunteerJobDetailViewController.job = selectedJob
+            
+            //Pass shifts
+            let targetId = selectedJob?.jobId
+            var selectedShifts = [VolunteerJobShift]()
+            
+            //Pass selected shifts
+            for i in 0..<loadedShifts.count {
+                if loadedShifts[i].volunteerJobId == targetId {
+                    selectedShifts.append(loadedShifts[i])
+                }
+                print(selectedShifts.count)
+            }
+            volunteerJobDetailViewController.shifts = selectedShifts
+            
+            //Pass selected hours
+            var selectedHours = [VolunteerJobHours]()
+            for i in 0..<signedUpHours.count {
+                if signedUpHours[i].volunteerJobId == targetId {
+                    selectedHours.append(signedUpHours[i])
+                }
+            }
+            volunteerJobDetailViewController.jobHoursSignedUp = selectedHours
+            
+            
+        }
+        
+        
+        
+        /*
+        guard let selectedVolunteerJobCell = sender as? JobTableViewCell else {
+            fatalError("Unexpected sender: \(String(describing: sender))")
+        }
+        
+        
+        guard let indexPath = tableView.indexPath(for: selectedVolunteerJobCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        let selectedJob = jobs[indexPath.row]
+        volunteerJobDetailViewController.job = selectedJob
+        let targetId = selectedJob.jobId
+        var selectedShifts = [VolunteerJobShift]()
+        var selectedHours = [VolunteerJobHours]()
+        
+        //Pass selected shifts
+        for i in 0..<numberOfShifts {
+            if shiftsArray[i].volunteerJobId == targetId {
+                selectedShifts.append(shiftsArray[i])
+            }
+            print(selectedShifts.count)
+        }
+        
+        volunteerJobDetailViewController.shifts = selectedShifts
+        
+        //Pass selected hours
+        for i in 0..<signedUpHours.count {
+            if signedUpHours[i].volunteerJobId == targetId {
+                selectedHours.append(signedUpHours[i])
+            }
+        }
+        
+        volunteerJobDetailViewController.jobHoursSignedUp = selectedHours
+
+        */
+        
     }
-    */
+ 
 
 }

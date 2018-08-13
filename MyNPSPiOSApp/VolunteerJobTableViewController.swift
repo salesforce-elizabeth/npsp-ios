@@ -15,6 +15,7 @@ import os.log
 
 var signedUpHours = [VolunteerJobHours]()
 var loadedJobs = [VolunteerJob]()
+var loadedShifts = [VolunteerJobShift]()
 
 class VolunteerJobTableViewController: UITableViewController {
     
@@ -43,6 +44,25 @@ class VolunteerJobTableViewController: UITableViewController {
             }.done { [unowned self] response in
                 self.dataRows = response.asJsonDictionary()["records"] as! [NSDictionary]
                 print(self.dataRows)
+                
+                //Populate loadedJobs
+                for i in 0..<self.dataRows.count {
+                    let jobref = self.dataRows[i]
+                    let photoi = UIImage(named: "VolJob\(i)")
+                    let jobNamei = jobref["Name"] as? String
+                    let jobDesci = jobref["GW_Volunteers__Description__c"] as? String
+                    let jobIdi = jobref["Id"] as? String
+                    let jobLatitudei = jobref["Location__Latitude__s"] as! Double
+                    let jobLongitudei = jobref["Location__Longitude__s"] as! Double
+                    guard let jobi = VolunteerJob(name: jobNamei!, photo: photoi, jobDescription: jobDesci!, jobId: jobIdi!, jobLatitude: jobLatitudei, jobLongitude: jobLongitudei) else {
+                        fatalError("Unable to instantiate job \(i)")
+                    }
+                    loadedJobs.append(jobi)
+                    print(self.dataRows[i])
+                }
+                print("The number of jobs in the loadedJobs array is:")
+                print(loadedJobs.count)
+                
                 SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"request:didLoadResponse: #records: \(self.dataRows.count)")
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
@@ -54,13 +74,34 @@ class VolunteerJobTableViewController: UITableViewController {
         //Mark: Volunteer Shift API call
         let shiftRestApi = SFRestAPI.sharedInstance()
         shiftRestApi.Promises
-            .query(soql: "SELECT Name, GW_Volunteers__Start_Date_Time__c,End_Date__c, GW_Volunteers__Desired_Number_of_Volunteers__c, GW_Volunteers__Number_of_Volunteers_Still_Needed__c, GW_Volunteers__Volunteer_Job__c, Id FROM GW_Volunteers__Volunteer_Shift__c")
+            .query(soql: "SELECT Name, GW_Volunteers__Start_Date_Time__c,End_Date__c, GW_Volunteers__Desired_Number_of_Volunteers__c, GW_Volunteers__Number_of_Volunteers_Still_Needed__c, GW_Volunteers__Volunteer_Job__c, Id, GW_Volunteers__Duration__c FROM GW_Volunteers__Volunteer_Shift__c")
             .then { request  in
                 shiftRestApi.Promises.send(request: request)
             }.done { [unowned self] response in
                 self.shiftDataRows = response.asJsonDictionary()["records"] as! [NSDictionary]
-                //print(self.shiftDataRows)
                 print(self.shiftDataRows.count)
+                
+                //Populate loadedShifts
+                for i in 0..<self.shiftDataRows.count {
+                    let shift = self.shiftDataRows[i]
+                    let shiftStartDateTime = shift["GW_Volunteers__Start_Date_Time__c"]
+                    let shiftEndDateTime = shift ["End_Date__c"]
+                    let volunteerJobId = shift["GW_Volunteers__Volunteer_Job__c"]
+                    let numberVolunteersStillNeeded = shift["GW_Volunteers__Number_of_Volunteers_Still_Needed__c"]
+                    let desiredNumberVolunteers = shift["GW_Volunteers__Desired_Number_of_Volunteers__c"]
+                    let shiftName = shift["Name"]
+                    let shiftId = shift["Id"]
+                    let hoursInShift = shift["GW_Volunteers__Duration__c"]
+                    
+                    guard let shiftI = VolunteerJobShift(startDateTime: shiftStartDateTime! as! String, endDateTime: shiftEndDateTime! as! String, desiredNumberVolunteers: desiredNumberVolunteers as! Int, numberVolunteersStillNeeded: numberVolunteersStillNeeded as! Int, volunteerJobId: volunteerJobId! as! String, shiftName: shiftName! as! String, shiftId: shiftId! as! String, hoursInShift: hoursInShift as! Int) else {
+                        fatalError("Unable to instantiate shift")
+                    }
+                    
+                    loadedShifts.append(shiftI)
+                    print(loadedShifts.count)
+                    
+                }
+                
                 SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"request:didLoadResponse: #records: \(self.shiftDataRows.count)")
                 DispatchQueue.main.async(execute: {
                 })
@@ -205,7 +246,8 @@ class VolunteerJobTableViewController: UITableViewController {
             guard let jobi = VolunteerJob(name: jobNamei!, photo: photoi, jobDescription: jobDesci!, jobId: jobIdi!, jobLatitude: jobLatitudei, jobLongitude: jobLongitudei) else {
                 fatalError("Unable to instantiate job \(i)")
             }
-            loadedJobs.append(jobi)
+            //Moving the below to different function:
+            //loadedJobs.append(jobi)
             jobs.append(jobi)
             print(jobs.count)
             print(dataRows[i])
@@ -224,8 +266,9 @@ class VolunteerJobTableViewController: UITableViewController {
             let desiredNumberVolunteers = shift["GW_Volunteers__Desired_Number_of_Volunteers__c"]
             let shiftName = shift["Name"]
             let shiftId = shift["Id"]
+            let hoursInShift = shift["GW_Volunteers__Duration__c"]
 
-            guard let shiftI = VolunteerJobShift(startDateTime: shiftStartDateTime! as! String, endDateTime: shiftEndDateTime! as! String, desiredNumberVolunteers: desiredNumberVolunteers as! Int, numberVolunteersStillNeeded: numberVolunteersStillNeeded as! Int, volunteerJobId: volunteerJobId! as! String, shiftName: shiftName! as! String, shiftId: shiftId! as! String) else {
+            guard let shiftI = VolunteerJobShift(startDateTime: shiftStartDateTime! as! String, endDateTime: shiftEndDateTime! as! String, desiredNumberVolunteers: desiredNumberVolunteers as! Int, numberVolunteersStillNeeded: numberVolunteersStillNeeded as! Int, volunteerJobId: volunteerJobId! as! String, shiftName: shiftName! as! String, shiftId: shiftId! as! String, hoursInShift: hoursInShift as! Int) else {
                 fatalError("Unable to instantiate shift")
             }
             
@@ -306,6 +349,7 @@ class VolunteerJobTableViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
+        //Moving function to viewdidload method
         loadVolunteerJobs()
         loadVolunteerShifts()
         loadVolunteerHours()
@@ -318,7 +362,7 @@ class VolunteerJobTableViewController: UITableViewController {
             }
             
             guard let selectedVolunteerJobCell = sender as? JobTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedVolunteerJobCell) else {
@@ -359,7 +403,7 @@ class VolunteerJobTableViewController: UITableViewController {
             
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
     }
 
